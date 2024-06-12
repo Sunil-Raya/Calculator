@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+      }
+
+      .wrapper {
+        width: 30%;
+        height: fit-content;
+        background-color: #000000;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 1vw;
+      }
+
+      #display {
+        width: 100%;
+        border: none;
+        padding: 2vh 5vh;
+        font-size: 2vw;
+        background-color: transparent;
+        color: white;
+        text-align: end;
+      }
+
+      .btn {
+        height: 4.5vw;
+        width: 4.5vw;
+        border-radius: 50%;
+        font-size: 1.5vw;
+        color: #fff;
+        background-color: #3e3e3e;
+        border: none;
+        transition: all ease 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #4f4f4f;
+      }
+
+      .btn:active {
+        transform: scale(0.9);
+      }
+
+      .ebtn {
+        height: 4.5vw;
+        width: 4.5vw;
+        border-radius: 50%;
+        font-size: 1.5vw;
+        color: #fff;
+        background-color: #2e2e2e;
+        border: none;
+        text-align: center;
+        transition: all ease 0.3s;
+      }
+
+      .ebtn:active {
+        transform: scale(0.9);
+      }
+
+      .ebtn:hover {
+        background-color: #3e3e3e;
+      }
+
+      #equall {
+        background-color: #f58d34;
+      }
+
+      #equall:hover {
+        background-color: #f97d11;
+      }
+
+      /* Media query for screens less than 600px wide */
+      @media (max-width: 600px) {
+        .wrapper {
+          width: 90%;
+        }
+
+        .buttons {
+          gap: 2vw;
+        }
+
+        #display {
+          font-size: 4vw;
+          padding: 2vh 2vw;
+        }
+
+        .btn,
+        .ebtn {
+          height: 12vw;
+          width: 12vw;
+          font-size: 4vw;
+        }
+
+        #equall {
+          font-size: 4vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <input type="text" id="display" disabled />
+      <div class="buttons">
+        <button class="ebtn" onclick="clearDisplay()">AC</button>
+        <button class="ebtn" onclick="appendToDisplay('%')">%</button>
+        <button class="ebtn" onclick="deleteLast()">←</button>
+        <button class="ebtn" onclick="appendToDisplay('/')">/</button>
+        <button class="btn" onclick="appendToDisplay('7')">7</button>
+        <button class="btn" onclick="appendToDisplay('8')">8</button>
+        <button class="btn" onclick="appendToDisplay('9')">9</button>
+        <button class="ebtn" onclick="appendToDisplay('*')">*</button>
+        <button class="btn" onclick="appendToDisplay('4')">4</button>
+        <button class="btn" onclick="appendToDisplay('5')">5</button>
+        <button class="btn" onclick="appendToDisplay('6')">6</button>
+        <button class="ebtn" onclick="appendToDisplay('-')">-</button>
+        <button class="btn" onclick="appendToDisplay('1')">1</button>
+        <button class="btn" onclick="appendToDisplay('2')">2</button>
+        <button class="btn" onclick="appendToDisplay('3')">3</button>
+        <button class="ebtn" onclick="appendToDisplay('+')">+</button>
+        <button class="btn" onclick="appendToDisplay('00')">00</button>
+        <button class="btn" onclick="appendToDisplay('0')">0</button>
+        <button class="btn" onclick="appendToDisplay('.')">.</button>
+        <button class="btn" id="equall" onclick="calculate('=')">=</button>
+      </div>
+    </div>
+
+    <script>
+      function clearDisplay() {
+        document.querySelector("#display").value = "";
+      }
+
+      function deleteLast() {
+        let dis = document.querySelector("#display").value;
+        document.querySelector("#display").value = display.substring(
+          0,
+          display.length - 1
+        );
+      }
+
+      function appendToDisplay(value) {
+        document.querySelector("#display").value += value;
+      }
+
+      function calculate() {
+        try {
+          let result = eval(document.querySelector("#display").value);
+          document.querySelector("#display").value = result;
+        } catch (error) {
+          document.querySelector("#display").value = error;
+        }
+      }
+    </script>
+  </body>
+</html>
