@@ -119,7 +119,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <input type="text" id="display" disabled />
+      <input type="text" id="display" disabled placeholder="0"/>
       <div class="buttons">
         <button class="ebtn" onclick="clearDisplay()">AC</button>
         <button class="ebtn" onclick="appendToDisplay('%')">%</button>
@@ -151,7 +151,7 @@
 
       function deleteLast() {
         let dis = document.querySelector("#display").value;
-        document.querySelector("#display").value = display.substring(
+        document.querySelector("#display").value = dis.substring(
           0,
           display.length - 1
         );
